@@ -1,4 +1,7 @@
 <resources>
     <string name="app_name">Lanchonete Delicia</string>
     <string name="products_title">Produtos</string>
+    <string name="nome_produto">Produto X</string>
+    <string name="preco_produto">R$X.XX</string>
+    <string name="dec_produto">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed ac vehicula neque. Mauris iaculis, nisl.</string>
 </resources>
