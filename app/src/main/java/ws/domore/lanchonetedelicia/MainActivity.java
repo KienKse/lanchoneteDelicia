@@ -1,6 +1,6 @@
 package ws.domore.lanchonetedelicia;
 
-import android.content.Context;
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
@@ -8,8 +8,8 @@ import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.ListView;
 import android.widget.TextView;
-import android.widget.Toast;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 
 public class MainActivity extends AppCompatActivity {
@@ -22,47 +22,39 @@ public class MainActivity extends AppCompatActivity {
         TextView textView = (TextView)this.findViewById(R.id.text_view_title);
         textView.setText(R.string.products_title);
 
-        ArrayList<String> produto_list = new ArrayList<String>();
+        ArrayList<Produto> produto_list = new ArrayList<Produto>();
 
-        produto_list.add("Suco Onda Tropical");
-        produto_list.add("Vitamina Planetaria");
-        produto_list.add("Hamburguer Exagerado");
-        produto_list.add("Pastel Super");
-        produto_list.add("Empada Olho Grande");
-        produto_list.add("Boliviado Quente");
-        produto_list.add("Quibe POP");
-        produto_list.add("Esfirra do Sabor");
-        produto_list.add("Crepioca Saborosa");
-        produto_list.add("Pao de Nuvem");
-        produto_list.add("Bruschetta Integral");
-        produto_list.add("Banana chips");
-        produto_list.add("Sopa Funcional");
-        produto_list.add("Sanduche Natureba");
-        produto_list.add("Salada  Surpresa");
+        //String nome ,String valor, String desc, Integer idImagem
+        produto_list.add(new Produto("Salada  Surpresa","R$12,00","Ervilha, mix de alface, batata doce, cenoura, rabanete e tomate",1));
+        produto_list.add(new Produto("Suco Onda Tropical","R$6,00","Laranja e frutas tropicais",2));
+        produto_list.add(new Produto("Vitamina Planetaria","R$8,00","Banana flambada, açúcar mascavo, canela em pó e cacau em pó",3));
+        produto_list.add(new Produto("Hamburguer Exagerado","R$15,50","ERROR 404",4));
+        produto_list.add(new Produto("Pastel Super","R$7,00","ERROR 404",5));
+        produto_list.add(new Produto("Empada Olho Grande","R$5,00","ERROR 404",6));
+        produto_list.add(new Produto("BOLIVIANO Quente","R$3,50","ERROR 404",7));
+        produto_list.add(new Produto("Quibe POP","R$3,00","ERROR 404",8));
+        produto_list.add(new Produto("Esfirra do Sabor","R$5,00","ERROR 404",9));
+        produto_list.add(new Produto("Crepioca Saborosa","R$6,00","ERROR 404",10));
+        produto_list.add(new Produto("Pao de Nuvem","R$3,00","ERROR 404",11));
+        produto_list.add(new Produto("Bruschetta Integral","R$10,00","ERROR 404",12));
+        produto_list.add(new Produto("Banana chips","R$6,00","ERROR 404",13));
+        produto_list.add(new Produto("Sopa Funcional","R$13,00","ERROR 404",14));
+        produto_list.add(new Produto("Sanduche Natureba","R$9,90","ERROR 404",15));
 
-        ArrayAdapter<String> adapter = new ArrayAdapter<String>(
-                this,
-                R.layout.list_item_produto,
-                R.id.text_view_produto,
-                produto_list
-        );
+        ArrayAdapter<Produto> adapter = new ArrayAdapter<Produto>(this,R.layout.list_item_produto,
+                R.id.text_view_produto,produto_list);
 
         ListView listView = (ListView)this.findViewById(R.id.list_view_produtos);
 
         listView.setAdapter(adapter);
 
-        Context context = this;
-        String text = "Olá Toast!";
-        int duration = Toast.LENGTH_SHORT;
-        Toast toast = Toast.makeText(context, text, duration);
-        toast.show();
-
         listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
-            public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
-                Toast newToast = Toast.makeText(MainActivity.this, ""+i, Toast.LENGTH_SHORT);
-                newToast.show();
+            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+                Intent intent = new Intent(MainActivity.this, DetalheActivity.class);
+                intent.putExtra("produto_list", (Serializable) parent.getItemAtPosition(position));
+                startActivity(intent);
             }
-        });
+        });        
     }
 }
