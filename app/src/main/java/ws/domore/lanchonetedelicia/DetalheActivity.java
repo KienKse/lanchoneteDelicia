@@ -34,7 +34,7 @@ public class DetalheActivity extends AppCompatActivity {
                 imagem.setImageResource(R.drawable.vitaminainter);
                 break;
             case 4:
-                imagem.setImageResource(R.drawable.hamburguerExagerado);
+                imagem.setImageResource(R.drawable.hamburguerexagerado);
                 break;
             case 5:
                 imagem.setImageResource(R.drawable.superpastel);
@@ -64,7 +64,7 @@ public class DetalheActivity extends AppCompatActivity {
                 imagem.setImageResource(R.drawable.bananachips);
                 break;
             case 14:
-                imagem.setImageResource(R.drawable.SopaDeVegetais);
+                imagem.setImageResource(R.drawable.sopadevegetais);
                 break;
             case 15:
                 imagem.setImageResource(R.drawable.sand);

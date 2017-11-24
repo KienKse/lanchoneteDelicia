@@ -3,14 +3,17 @@ package ws.domore.lanchonetedelicia;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
+import android.util.Log;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.ListView;
 import android.widget.TextView;
-
+import com.loopj.android.http.*;
 import java.io.Serializable;
 import java.util.ArrayList;
+
+import cz.msebera.android.httpclient.Header;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -18,6 +21,33 @@ public class MainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+
+        // BIBLIOTECA ASYNCHTTPCLIENT
+        AsyncHttpClient client = new AsyncHttpClient();
+
+        client.get(
+                //https://herokuapp.com/main/api - NOT FOUND
+                "https://....herokuapp.com/main/api",
+                //  TextHttpResponseHandler - onSuccess() | onFailure()
+                new TextHttpResponseHandler() {
+
+                    /*
+                        responseString NULL
+                    */
+
+                    @Override
+                    public void onFailure(int statusCode, Header[] headers, String responseString, Throwable throwable) {
+                        Log.d("AsyncHttpClient", "response = " + responseString);
+                    }
+
+                    @Override
+                    public void onSuccess(int statusCode, Header[] headers, String responseString) {
+                            Log.d("AsyncHttpClient", "response = " + responseString);
+                    }
+                });
+
+
+
 
         TextView textView = (TextView)this.findViewById(R.id.text_view_title);
         textView.setText(R.string.products_title);
