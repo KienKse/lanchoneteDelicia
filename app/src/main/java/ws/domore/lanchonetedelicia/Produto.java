@@ -4,21 +4,34 @@ import java.io.Serializable;
 
 public class Produto implements Serializable {
 
-    private Integer idImagem;
+    private Integer _id;
 	private String nome;
-	private String valor;
-	private String desc;
-//	private Imagem imagem;
+	private String preco;
+	private String descricao;
+	private String imagem;
 
     public Produto() {
         super();
     }
 
-	public Produto(String nome ,String valor, String desc, Integer idImagem) {
-        this.idImagem = idImagem;
+	public Produto(String nome , String preco, String descricao, Integer _id) {
+        this._id = _id;
         this.nome = nome;
-        this.valor = valor;
-        this.desc = desc;
+        this.preco = preco;
+        this.descricao = descricao;
+    }
+
+
+    public void set_id(Integer _id) {
+        this._id = _id;
+    }
+
+    public String getImagem() {
+        return imagem;
+    }
+
+    public void setImagem(String imagem) {
+        this.imagem = imagem;
     }
 
     public String getNome() {
@@ -29,29 +42,25 @@ public class Produto implements Serializable {
         this.nome = nome;
     }
 
-    public String getValor() {
-        return valor;
+    public String getPreco() {
+        return preco;
     }
 
-    public void setValor(String valor) {
-        this.valor = valor;
+    public void setPreco(String preco) {
+        this.preco = preco;
     }
 
-    public String getDesc() {
-        return desc;
+    public String getDescricao() {
+        return descricao;
     }
 
-    public void setDesc(String desc) {
-        this.desc = desc;
+    public void setDescricao(String descricao) {
+        this.descricao = descricao;
     }
 
-    public Integer getIdImagem() {
-        return idImagem;
+    public Integer get_id() {
+        return _id;
     }
-
-//  public String getImagem(Imagem img) {
-//      return img;
-//  }
 
     @Override
     public String toString() {

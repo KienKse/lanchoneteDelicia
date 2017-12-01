@@ -1,5 +1,6 @@
 package ws.domore.lanchonetedelicia;
 
+import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.widget.ImageView;
@@ -12,18 +13,26 @@ public class DetalheActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_detalhe);
 
-        Produto produt = (Produto) getIntent().getSerializableExtra("produto_list");
+//        Produto produt = (Produto) getIntent().getSerializableExtra("produto_list");
+        Intent intent = DetalheActivity.this.getIntent();
+        String produtoNome = "";
+        if (intent.hasExtra("produto_nome")) {
+            produtoNome = intent.getStringExtra("produto_nome");
+        }
 
         ImageView imagem = (ImageView) findViewById(R.id.imgProduto);
         TextView nome = (TextView) findViewById(R.id.nomeProduto);
         TextView valor = (TextView) findViewById(R.id.valorProduto);
         TextView desc = (TextView) findViewById(R.id.descProduto);
 
-        nome.setText(produt.getNome());
-        valor.setText(produt.getValor());
-        desc.setText(produt.getDesc());
+        nome.setText(produtoNome);
 
-        switch (produt.getIdImagem()) {
+        /*
+        nome.setText(produt.getNome());
+        valor.setText(produt.getPreco());
+        desc.setText(produt.getDescricao());
+
+        switch (produt.get_id()) {
             case 1:
                 imagem.setImageResource(R.drawable.salada_surpresa);
                 break;
@@ -70,5 +79,6 @@ public class DetalheActivity extends AppCompatActivity {
                 imagem.setImageResource(R.drawable.sand);
                 break;
         }
+        */
         }
 }
