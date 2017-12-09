@@ -19,7 +19,6 @@ public class DetalheActivity extends AppCompatActivity {
         if (intent.hasExtra("produto_nome")) {
             produtoNome = intent.getStringExtra("produto_nome");
         }
-
         ImageView imagem = (ImageView) findViewById(R.id.imgProduto);
         TextView nome = (TextView) findViewById(R.id.nomeProduto);
         TextView valor = (TextView) findViewById(R.id.valorProduto);
