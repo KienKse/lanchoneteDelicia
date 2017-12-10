@@ -6,6 +6,8 @@ import android.os.Bundle;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import com.squareup.picasso.Picasso;
+
 public class DetalheActivity extends AppCompatActivity {
 
     @Override
@@ -13,23 +15,32 @@ public class DetalheActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_detalhe);
 
-//        Produto produt = (Produto) getIntent().getSerializableExtra("produto_list");
-        Intent intent = DetalheActivity.this.getIntent();
-        String produtoNome = "";
-        if (intent.hasExtra("produto_nome")) {
-            produtoNome = intent.getStringExtra("produto_nome");
-        }
-        ImageView imagem = (ImageView) findViewById(R.id.imgProduto);
         TextView nome = (TextView) findViewById(R.id.nomeProduto);
         TextView valor = (TextView) findViewById(R.id.valorProduto);
         TextView desc = (TextView) findViewById(R.id.descProduto);
 
+        Intent intent = DetalheActivity.this.getIntent();
+        String produtoNome = "";
+        String url = "";
+        if (intent.hasExtra("produto_url")) {
+            url = intent.getStringExtra("produto_url");
+        }
+        if (intent.hasExtra("produto_nome")) {
+            produtoNome = intent.getStringExtra("produto_nome");
+        }
+        if (intent.hasExtra("produto_preco")) {
+            valor.setText(intent.getStringExtra("produto_preco"));
+        }
+        if (intent.hasExtra("produto_desc")) {
+            desc.setText(intent.getStringExtra("produto_desc"));
+        }
         nome.setText(produtoNome);
+        ImageView imagem = (ImageView) findViewById(R.id.imgProduto);
+        Picasso.with(this).load(url).into(imagem);
 
         /*
-        nome.setText(produt.getNome());
-        valor.setText(produt.getPreco());
-        desc.setText(produt.getDescricao());
+
+        !- GAMB ANTIGA -!
 
         switch (produt.get_id()) {
             case 1:
